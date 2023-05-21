@@ -5,11 +5,12 @@
   <link href = "styles.css" rel = "stylesheet">
   <script src = "script.js" defer></script>
   <title>Library</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
   <header>
     <h1>Library</h1>
-    <button class = "new">Create Book</button>
+    <button class = "new"><span class = "material-symbols-outlined">add</span></button>
   </header>
   <div class = "library">
     <div class = "book">
@@ -30,48 +31,31 @@
       <h5>195 pages</h5>
       <h5>Not Read</h5>
     </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
-    <div class = "book">
-      <h3>The Hobbit</h3>
-      <h5>By J.R.R. Tolkien</h5>
-      <h5>195 pages</h5>
-      <h5>Not Read</h5>
-    </div>
+  </div>
+  <div class = "bookSetup">
+    <button class = "close"><span class="material-symbols-outlined">close</span></button>
+    <h1>Create Book</h1>
+    <form method="post" action="index.html">
+      <div class = "form-input">
+        <div>
+        <label for = "title">Title</label>
+        <input type = "text" id = "title" name = "title" pattern = "[A-Z a-z]+" required>
+        </div>
+        <div>
+        <label for = "author">author</label>
+        <input type = "text" id = "author" name = "author" pattern = "[A-Z a-z .]+" required>
+        </div>
+        <div>
+        <label for = "pages">Page Count</label>
+        <input type = "tel" id = "pages" name = "pages" min = "1" max = "10000" pattern = "[0-9]+" required>
+        </div>
+        <div class = "readInput">
+        <label for = "read">Read Status</label>
+        <input type = "checkbox" id = "Read" name = "read" required>
+        </div>
+      </div>
+      <input type = "submit" value = "Add">
+    </form>
   </div>
 </body>
 </html>

@@ -7,6 +7,9 @@ const newBookButton = document.querySelector(".new");
 // Reference to full page
 const body = document.querySelector("body");
 
+const bookSetup = document.querySelector(".bookSetup");
+
+
 // Array of books
 library = [];
 
@@ -35,6 +38,19 @@ function addBook(book) {
   const newBook = document.createElement("div");
   newBook.classList.add("book");
 
+  // Add delete button
+  const closeBook = document.createElement("button");
+  closeBook.classList.add("close");
+  const closeIcon = document.createElement("span")
+  closeIcon.classList.add("material-symbols-outlined")
+  closeIcon.textContent = "close";
+  closeBook.appendChild(closeIcon);
+  closeBook.addEventListener("click",function() {
+    const parent = closeBook.parentElement;
+    parent.style.display = "none";
+  })
+  newBook.appendChild(closeBook);
+
   // Title
   const bookTitle = document.createElement("h3");
   bookTitle.textContent = book.title;
@@ -47,12 +63,17 @@ function addBook(book) {
 
   // Page Count
   const bookPages = document.createElement("h5");
-  bookPages.textContent = book.pages;
+  bookPages.textContent = book.pages + " Pages";
   newBook.appendChild(bookPages);
 
   // Read Status
   const bookRead = document.createElement("h5");
-  bookRead.textContent = book.read;
+  if (book.read == "on") {
+    bookRead.textContent = "Read";
+  }
+  else {
+    bookRead.textContent = "Not Read";
+  }
   newBook.appendChild(bookRead);
 
   // Add book to library
@@ -60,38 +81,37 @@ function addBook(book) {
 }
 
 newBookButton.addEventListener("click", function() {
-  const bookSetup = document.createElement("div");
-  bookSetup.classList.add("bookSetup");
-
-  const setupForm = document.createElement("form");
-
-  const setupTitle = document.createElement("input");
-  setupTitle.setAttribute("id","title");
-  const setupAuthor = document.createElement("input");
-  const setupPages = document.createElement("input");
-  const setupRead = document.createElement("input");
-
-  const titleLabel = document.createElement("label");
-  titleLabel.textContent = "Title"
-  titleLabel.setAttribute("for","title");
-  const authorLabel = document.createElement("label");
-  const pagesLabel = document.createElement("label");
-  const readLabel = document.createElement("label");
-
-  const inputs = [[titleLabel,setupTitle],[authorLabel,setupAuthor],[pagesLabel,setupPages],[readLabel,setupRead]];
-  inputs.forEach(function(input) {
-    const inputPair = document.createElement("div");
-    setupForm.appendChild(inputPair);
-    input.forEach(function(item) {  
-      inputPair.appendChild(item);
-    })    
-  });
-
-
-  bookSetup.appendChild(setupForm);
-
-  body.appendChild(bookSetup);
+  bookSetup.style.display = "flex";
 })
+
+// Get data
+const form = document.querySelector("form");
+form.addEventListener("submit", function () {
+  let titleData = document.getElementById("title").value;
+  let authorData = document.getElementById("author").value;
+  let pagesData = document.getElementById("pages").value;
+  let readData = document.getElementById("Read").value;
+  let newBook = new book(titleData,authorData,pagesData,readData);
+  addBook(newBook);
+  bookSetup.style.display = "none";
+  let inputsData = document.querySelectorAll("div>input");
+  inputsData.forEach(element => {
+    element.value = "";
+  });
+  event.preventDefault();
+  
+})
+
+// When button with class "close" is clicked delete parent
+const closeButtons = document.querySelectorAll(".close")
+closeButtons.forEach(closeButton => {
+  closeButton.addEventListener("click",function() {
+    const parent = closeButton.parentElement;
+    parent.style.display = "none";
+  })
+})
+  
+
 
 // Add books
 addBook(hobbit);

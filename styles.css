@@ -43,15 +43,27 @@ table {
 }
 
 /* Personal CSS  */
-
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  gap: 20px;
+}
 h1 {
-  font-size: 30px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
 }
 h3 {
-  font-size: 20px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
 }
 h5 {
-  font-size: 15px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -60,12 +72,16 @@ header {
   justify-content: center;
   align-items: center;
   height: 100px;
+  background-color: #06b6d4;
+  color: black;
+  justify-content: space-evenly;
+  box-shadow: rgba(0, 0, 0, 0.144) 5px 5px 10px;
 }
 
 .library {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  grid-template-rows: repeat(auto-fit,minmax(100px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(350px,1fr));;
+  grid-template-rows: repeat(auto-fit,minmax(200px,1fr));
   gap: 50px;
   margin-left: 50px;
   margin-right: 50px;
@@ -75,32 +91,119 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
+  border-radius: 5%;
+  border: solid #107586 3px;
   gap: 20px;
   background-color: skyblue;
+  padding: 20px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.144) 5px 5px 10px;
+  font-weight: bold;
 }
 
 .bookSetup {
-  background-color: orange;
+  background-color: rgb(191, 236, 253);
+
+  /* Dims the screen around it */
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, .4);          
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .4);
+
   position: absolute;
   /* Center */
   top: 50%;
   left: 50%;
   /* Dont totally understand but this is needed because top & left move the corner and not the center */
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-60%);
 
-  height: 800px;
+  height: 600px;
   width: 400px;
   border-radius: 5%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  display: none;
+
+  gap: 20px;
 }
 
-.bookSetup>form {
+.bookSetup>h1 {
+  margin-top: 20px;
+}
+
+.bookSetup>form,
+.form-input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+  width: 90%;
+  height: 80%
+}
+#Read {
+  width: 55%;
+}
+form>.form-input>div {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  gap: 10px;
+}
+input[type="submit"] {
+  margin-top: auto;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #107586;
+  color: white;
+  border: solid black 2px;
+  width: 200px;
+  height: 50px;
 }
 
+input[type="submit"]:hover {
+  color: #107586;
+  background-color: #f8fafc;
+  border-radius: 5%;
+}
+
+input {
+  width: 50%;
+}
+label {
+  font-size: 25px;
+}
+
+.close {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.new {
+  background-color: transparent;
+  border: none;
+}
+
+.new span {
+  font-size: 40px;
+  transition: transform 1s ease-in-out;
+}
+
+.new span:hover {
+  transform: rotate(360deg);
+}
+
+
+/* @media (min-width: 500px) {
+  .library {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(auto-fit,minmax(100px,1fr));
+  }
+} */
