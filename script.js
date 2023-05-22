@@ -13,13 +13,6 @@ const bookSetup = document.querySelector(".bookSetup");
 // Array of books
 library = [];
 
-// Test Object
-const hobbit = {
-  title: "The Hobbit",
-  author: "J.R.R. Tolkien",
-  pages: "192",
-  read: "not read",
-}
 
 // book Constructor
 function book(title,author,pages,read) {
@@ -58,7 +51,7 @@ function addBook(book) {
 
   // Author
   const bookAuthor = document.createElement("h5");
-  bookAuthor.textContent = book.author;
+  bookAuthor.textContent = "By " + book.author;
   newBook.appendChild(bookAuthor);
 
   // Page Count
@@ -67,14 +60,36 @@ function addBook(book) {
   newBook.appendChild(bookPages);
 
   // Read Status
+  const readStatus = document.createElement("div");
+  readStatus.classList.add("read-status");
   const bookRead = document.createElement("h5");
+  readStatus.appendChild(bookRead);
+  bookRead.classList.add("read-label");
   if (book.read == "on") {
     bookRead.textContent = "Read";
   }
   else {
     bookRead.textContent = "Not Read";
   }
-  newBook.appendChild(bookRead);
+  const statusChange = document.createElement("button");
+  statusChange.classList.add("status-change");
+  const changeIcon = document.createElement("span");
+  changeIcon.classList.add("material-symbols-outlined");
+  changeIcon.textContent = "change_circle"
+  readStatus.appendChild(statusChange);
+  statusChange.append(changeIcon);
+
+  statusChange.addEventListener("click", function(){
+    const readLabel = statusChange.previousElementSibling;
+    if (readLabel.textContent == "Read") {
+      readLabel.textContent = "Not Read";
+    }
+    else if (readLabel.textContent == "Not Read") {
+      readLabel.textContent = "Read";
+    }
+  })
+
+  newBook.appendChild(readStatus);
 
   // Add book to library
   gridLibrary.appendChild(newBook);
@@ -110,9 +125,18 @@ closeButtons.forEach(closeButton => {
     parent.style.display = "none";
   })
 })
-  
 
+// Button to change read status
+const statusChangeButtons = document.querySelectorAll(".status-change");
+statusChangeButtons.forEach(statusChangeButton => {
+  statusChangeButton.addEventListener("click", function(){
+    const readLabel = statusChangeButton.previousElementSibling;
+    if (readLabel.textContent == "Read") {
+      readLabel.textContent = "Not Read";
+    }
+    else if (readLabel.textContent == "Not Read") {
+      readLabel.textContent = "Read";
+    }
+  })
+})
 
-// Add books
-addBook(hobbit);
-console.log(library);
