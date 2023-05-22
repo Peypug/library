@@ -115,8 +115,7 @@ header {
   /* Dont totally understand but this is needed because top & left move the corner and not the center */
   transform: translate(-50%,-60%);
 
-  height: 600px;
-  width: 400px;
+  height: 70%;
   border-radius: 5%;
 
   display: flex;
@@ -169,6 +168,7 @@ input[type="submit"]:hover {
 
 input {
   width: 50%;
+  height: 20px;
 }
 label {
   font-size: 25px;
@@ -210,13 +210,24 @@ label {
   .book {
     width: 200px;
   }
-  
+  .bookSetup h1 {
+    font-size: 30px;
+  }
+  .bookSetup input[type="submit"] {
+    width: 100px;
+  }
 }
 
 
 @media screen and (max-width: 350px) {
   .book {
     width: 150px
+  }
+  .bookSetup h1 {
+    font-size: 20px;
+  }
+  .bookSetup h5 {
+    font-size: 20px;
   }
   
 }
