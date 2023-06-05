@@ -115,6 +115,7 @@ header {
   /* Dont totally understand but this is needed because top & left move the corner and not the center */
   transform: translate(-50%,-60%);
 
+  width: 50%;
   height: 70%;
   border-radius: 5%;
 
